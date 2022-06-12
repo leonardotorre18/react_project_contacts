@@ -1,0 +1,89 @@
+.contactCard {
+    border: solid 1px #dee2e65b;
+    padding: 1em;
+    width: 100%;
+    border-radius: 5px;
+    h5.name {
+        font-size: 1.25rem;
+        margin-bottom: .4em;
+        min-width: max-content;
+        font-weight: 400;
+    }
+    .email {
+        font-size: 1em;
+        margin-bottom: .6em;
+        opacity: .8;
+        min-width: max-content;
+    }
+    p.status {
+        font-size: 1em;
+        margin-bottom: .4em;
+
+        span {
+            padding: .1em .3em;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            &::after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                display: inline-block;
+                border-radius: 50%;
+                margin-left: .3em;
+            }
+            &.online {
+                background-color: #198754;
+                &::after{
+                    background-color: #25c97c;
+                }
+            }
+            &.offline {
+                background-color: #dc3545;
+                &::after{
+                    background-color: rgb(255, 79, 35)
+                }
+            }
+
+        }
+        
+    }
+    .buttons {
+        padding: .5em;
+        button.delete{
+            font-size: 1em;
+            padding: .4em .9em;
+            color: #fff;
+            background-color: #dc3545;
+            border:solid 3px #dc3545;
+            border-radius: 5px;
+    
+            &:hover {
+                background-color: #c82333;
+                border-color: #bd2130;
+            }
+            &:focus {
+                box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, .5);
+            }
+        }
+        button.edit{
+            font-size: 1em;
+            padding: .4em .9em;
+            color: #fff;
+
+            background-color: #007bff;
+            border:solid 3px #007bff;
+            border-radius: 5px;
+    
+    
+            &:hover {
+                background-color: #0069d9;
+                border-color: #0062cc;
+            }
+            &:focus {
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .5);
+            }
+        }
+    }
+  
+}

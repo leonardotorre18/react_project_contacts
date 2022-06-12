@@ -1,0 +1,10 @@
+.contactContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    justify-items: center;
+    justify-content: center;
+    max-width: 1080px;
+    margin: 0 auto;
+    grid-gap: 1em;
+    padding: 1em;
+}
