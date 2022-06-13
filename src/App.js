@@ -2,18 +2,12 @@ import { useState } from 'react';
 import Navbar from './components/layout/Navbar';
 import Form from './components/pure/form/Form';
 import ContactList from './components/containers/ContactList';
-import Contact from './models/Contact';
+import ContactsAPI from './ContactsAPI';
 import './App.scss';
 
-
 function App() {
-  const [contacts, setContacts] = useState([
-    new Contact('Leonardo', 'Torrealba', 'Leonardotorre14@gmail.com', true),
-    // new Contact('Liyimar', 'Gamboa', 'Corinami2021.l@gmail.com', true),
-    new Contact('Omaira', 'Yanez', 'Ynaara@hotmail.com', false),
-    new Contact('Salvador', 'Torrealba', 'Salvatorre62_167@gmail.com', false)
-  ])
-
+  const [contacts, setContacts] = useState(ContactsAPI)
+  
   const addContact = contact => {
     setContacts([
       ...contacts,
