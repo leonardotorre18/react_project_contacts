@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Navbar from './components/layout/Navbar';
-import Form from './components/pure/form/Form';
+import FormContact from './components/pure/form/FormContact';
 import ContactList from './components/containers/ContactList';
 import ContactsAPI from './ContactsAPI';
 import './App.scss';
@@ -31,9 +31,9 @@ function App() {
   return (
     <div className="App">
       <Navbar></Navbar>
-      <Form
+      <FormContact
         addContact={addContact}
-      ></Form>
+      ></FormContact>
       <ContactList
         contacts={contacts}
         deleteContact={ deleteContact }
