@@ -13,74 +13,72 @@ const FormSchema = Yup.object().shape({
 export default function FormContact({addContact}) {
 
   return (
-    <div>
-      <Formik
-        initialValues={{
+    <div><Formik
+      initialValues={{
           name: '',
           lastname: '',
           email: ''
-        }}
-        onSubmit={(values, { setSubmitting }) => {
+      }}
+      onSubmit={(values, { setSubmitting }) => {
           // setTimeout(() => {
             //   alert(JSON.stringify(values, null, 2));
             //   setSubmitting(false);
             // }, 400);
-            addContact(values)
-          }}
-          validationSchema={FormSchema}
-      >
-        {
-          props => {
-            const {
-              values,
+        addContact(values)
+      }}
+      validationSchema={FormSchema}
+    >
+      { props => {
+        const {
+              // values,
+              // isSubmitting,
+              // handleChange,
+              // handleBlur,
+              // handleSubmit,
               touched,
-              errors,
-              isSubmitting,
-              handleChange,
-              handleBlur,
-              handleSubmit
-            } = props;
-            return(
+              errors
+        } = props;
+        
+        return(
         <Form className='form'>
           <h3 className='title'>Agregar Contacto</h3>
+
           <div className="form-group">
             <label htmlFor='name'>Nombre</label>
             <Field
               id='name'
               name='name'
               className='input'
-            ></Field>
-            <ErrorMessage name='name'></ErrorMessage>
+            />
+            <ErrorMessage name='name' />
             {errors.name && touched.name && 'Error en el nombre'}
           </div>
+
           <div className="form-group">
             <label htmlFor='lastname'>Apellido</label>
             <Field
               id='lastname'
               name='lastname' 
               className='input'
-            ></Field>
+            />
           </div>
+
           <div className="form-group">
             <label htmlFor='email'>Email</label>
             <Field
               id='email'                       
               name='email'
               className='input'
-            ></Field>
+            />
           </div>
+
           <input type="submit" className='input'/>
         </Form>
-            )
-          }
-        }
-
-
-      </Formik>
-    </div>
+        )
+      }}
+    </Formik></div>
   )
 }
-
 
 FormContact.propTypes = {
     addContact: propTypes.func.isRequired
