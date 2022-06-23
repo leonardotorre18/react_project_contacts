@@ -1,10 +1,10 @@
-import { ROLES } from "./roles.enum";
+import { LEVELS } from "./enums";
 
 export class TaskModel {
     name = '';
     description = '';
     completed = false;
-    level = ROLES.NORMAL;
+    level = LEVELS.NORMAL;
 
     constructor(name, description, completed, level){
         this.name = name;
@@ -14,3 +14,4 @@ export class TaskModel {
     }
 
 }
+

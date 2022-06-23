@@ -1,6 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { ROLES } from '../../models/roles.enum';
+import { LEVELS } from '../../../models/enums';
 
 
 const formSchema = Yup.object().shape({
@@ -15,7 +15,7 @@ const FormTask = ({addTask}) => {
     name: '',
     description:  '',
     completed: false,
-    level: ROLES.NORMAL
+    level: LEVELS.NORMAL
   }
   return (
     <div><Formik
@@ -26,17 +26,19 @@ const FormTask = ({addTask}) => {
       }}
     >
         <Form>
-          <div class="form-group"> 
-            <label for="name">Nombre</label>
-            <Field type="text" name='name' class="form-control" id="name" />
-            <ErrorMessage name='name'></ErrorMessage>
+          <h3>New Task</h3>
+          <div className="form-group mb-4"> 
+            <label htmlFor="name">Name</label>
+            <Field type="text" name='name' className="form-control" id="name" />
+            <ErrorMessage name='name' className="form-text text-muted"></ErrorMessage>
           </div>
-          <div class="form-group"> 
-            <label for="description">Descripción</label>
-            <Field type="text" name='description' class="form-control" id="description" />
+          <div className="form-group mb-4"> 
+            <label htmlFor="description">Descripción</label>
+            <Field type="text" name='description' className="form-control" id="description" />
           </div>
-          <button type="submit" class="btn btn-primary">Agregar</button>
+          <button type="submit" className="btn btn-primary">Agregar</button>
         </Form>
+
     </Formik></div>
   )
 
