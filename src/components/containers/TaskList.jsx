@@ -1,10 +1,9 @@
 import Task from "../pure/Task";
-import { Link } from "react-router-dom";
 
 export default function TaskList({tasks, deleteTask, completeTask}) {
-  return (
-    <div>
-    <table>
+  
+  return tasks.length > 0 ? 
+  <table>
       <thead>
         <tr>
           <th scope='col'>Title</th>
@@ -26,10 +25,7 @@ export default function TaskList({tasks, deleteTask, completeTask}) {
       })}
       </tbody>
     </table>
-      <Link to='/addTask' className="mx-2 nav-item nav-link active">
-        <button className="btn btn-primary">Add Task</button>
-      </Link>
-
-    </div>
-  )
+  
+  : <p>There's not Tasks...</p>
+  
 }

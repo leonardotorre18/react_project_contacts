@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup'
 
 const formSchema = Yup.object().shape({
@@ -6,38 +7,35 @@ const formSchema = Yup.object().shape({
     .email('Invalid email format')
     .required('Email is required'),
   password: Yup.string()
-    .min(8, 'Password too short')
-    .required('Password is required'),
-  passwordConfirm: Yup.string()
-    .when("password", {
-      is: value => (value && value.length > 0 ? true : false),
-      then: Yup.string().oneOf(
-        [Yup.ref("password")],
-        '¡Passwords must match!'
-      )
-    }).required('You must confirm the password')
-})
+    .required('Password is required')
+});
 
 
-export default function Register() {
+
+export default function Login({setLogged}) {
+
+  const navigate = useNavigate();
 
   return (
       <div><Formik
         validationSchema={formSchema}
-        initialValues={{ email: '', password: '', passwordConfirm: '' }}
+        initialValues={{ email: '', password: '' }}
         onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 10);
+            // setTimeout(() => {
+            //   alert(JSON.stringify(values, null, 2));
+            //   setSubmitting(false);
+            // }, 10);
+            localStorage.setItem('email', values.email);
+            localStorage.setItem('password', values.password);
+            setLogged(true);
+            navigate('/');
         }}
       >
 
       { props => {
-        const {
-            errors
-        } = props;
-        console.log(errors);
+        // const {
+        //     // errors
+        // } = props;
         return (
 
       <Form
@@ -46,7 +44,7 @@ export default function Register() {
           'margin': '0 auto'
         }}
       >
-      <h3 className="mb-3">Resgister</h3>
+      <h3 className="mb-3">Login</h3>
       <div className="form-outline mb-4">
         <label className="form-label" htmlFor="email">Email address</label>
         <Field 
@@ -67,19 +65,9 @@ export default function Register() {
         />
         <ErrorMessage name='password' className="form-text text-muted" />
       </div>
-      <div className="form-outline mb-4">
-        <label className="form-label" htmlFor="password">Password Confirm</label>
-        <Field 
-          type="password" 
-          id="passwordConfirm" 
-          name="passwordConfirm" 
-          className="form-control" 
-        />
-        <ErrorMessage name='passwordConfirm' className="form-text text-muted" />
-      </div>
 
       <div className="col d-flex justify-content-center">
-        <button className="btn btn-primary btn-block mb-4">Sign up</button>
+        <button className="btn btn-primary btn-block mb-4">Sign in</button>
       </div>
       </Form>
         )
