@@ -1,9 +1,10 @@
 *,*::after,*::before {
   box-sizing: border-box;
-}
-body {
+  color: rgba(255, 255, 255, .9);
   margin: 0;
   padding: 0;
+}
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

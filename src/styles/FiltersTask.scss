@@ -1,0 +1,27 @@
+.filters {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+  button {
+    margin: 0 5px;
+    padding: .3em;
+    font-size: 1em;
+    outline: none; 
+    border: none;
+    // color: #fff;
+    &:hover {
+      opacity: .8;
+    }
+    &.allTasks {
+      background-color: rgb(16, 134, 26);
+    }
+    &.completedTasks {
+      background-color: rgb(235, 205, 34);
+      color: #000;
+    }
+    &.incompletedTasks {
+      background-color: rgb(209, 36, 36);
+    }
+  }
+}
