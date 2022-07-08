@@ -1,16 +1,6 @@
 import { actionsTypes } from '../actions/actions'
 
 const initialState = []
-// for (let i = 0; i < 5; i++) {
-//   initialState.push({
-//   title: 'Task Example',
-//   description: 'Para lograr grandes cosas se necesitan grandes esfuerzos',
-//   completed: false,
-//   id: i
-// })
-// }
-
-
 
 export const TaskReducer = (state = initialState, action) => {
   switch (action.type) {

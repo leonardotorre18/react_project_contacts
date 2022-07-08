@@ -1,0 +1,17 @@
+header.header {
+  p.text {
+    padding: 1em;
+    font-size: 1.5em;
+    text-align: center;
+    &.waiting {
+      background-color: rgb(235, 205, 34);
+      color: rgba(0, 0, 0, 0.8);
+    }
+    &.active {
+      background-color: rgb(16, 134, 26);
+    }
+    &.off {
+      background-color: rgb(209, 36, 36);
+    }
+  }
+}
