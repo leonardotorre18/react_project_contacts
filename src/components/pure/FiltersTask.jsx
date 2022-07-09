@@ -1,31 +1,24 @@
+import { useContext } from 'react';
+import { actions, filterTypes } from '../../context/actions';
+import globalContext from '../../context/config';
 import '../../styles/FiltersTask.scss';
-import { connect } from 'react-redux';
-import { actions } from '../../store/actions/actions'
-import { filterTypes } from '../../store/reducers/FilterReducer'
 
 
-function FiltersTask({toggleTask}) {
+export default function FiltersTask() {
+
+  const { FilterDispatch } = useContext(globalContext)
+
   return (
     <div className='filters'>
       <button className="allTasks"
-        onClick={()=> toggleTask(filterTypes.SHOW_ALL)}
+        onClick={()=> FilterDispatch(actions.setFilter(filterTypes.SHOW_ALL))}
       >All Tasks</button>
       <button className='completedTasks'
-        onClick={()=> toggleTask(filterTypes.SHOW_COMPLETED)}
+        onClick={()=> FilterDispatch(actions.setFilter(filterTypes.SHOW_COMPLETED))}
       >Completed Tasks</button>
       <button className="incompletedTasks"
-        onClick={()=> toggleTask(filterTypes.SHOW_INCOMPLETED)}
+        onClick={()=> FilterDispatch(actions.setFilter(filterTypes.SHOW_INCOMPLETED))}
       >Incompleted Tasks</button>
     </div>
   )
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return{
-    toggleTask: (filter) => {
-      dispatch(actions.setFilter(filter))
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(FiltersTask)

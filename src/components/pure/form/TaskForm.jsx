@@ -1,8 +1,9 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { useContext } from 'react';
 import * as Yup from 'yup';
+import { actions } from '../../../context/actions';
+import globalContext from '../../../context/config';
 import '../../../styles/TaskForm.scss';
-import { actions } from '../../../store/actions/actions';
-import { connect } from 'react-redux';
 
 
 const formSchema = Yup.object().shape({
@@ -11,8 +12,10 @@ const formSchema = Yup.object().shape({
 });
 
 
-const TaskForm = ({ addTask }) => {
 
+const TaskForm = () => {
+  const { TasksDispatch } = useContext(globalContext)
+  
   const initialValues = {
     title: '',
     description:  '',
@@ -23,7 +26,7 @@ const TaskForm = ({ addTask }) => {
       initialValues = { initialValues }
       validationSchema = {formSchema}
       onSubmit={(values, {resetForm}) => {
-        addTask(values)
+        TasksDispatch(actions.addTask(values))
         resetForm({
           values: ''
         })
@@ -47,11 +50,4 @@ const TaskForm = ({ addTask }) => {
   )
 
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTask: (task) => {
-      dispatch(actions.addTask(task))
-    }
-  }
-}
-export default connect(null, mapDispatchToProps)(TaskForm)
+export default TaskForm;

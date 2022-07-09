@@ -1,9 +1,11 @@
 import '../../styles/TaskList.scss';
-import Task from '../pure/Task';
-import { filterTypes } from '../../store/reducers/FilterReducer';
-import { connect } from 'react-redux';
+
+import { useContext } from "react"
+import globalContext from "../../context/config"
+import Task from '../pure/Task'
 
 import FiltersTask from '../pure/FiltersTask';
+import { filterTypes } from '../../context/actions';
 
 const filterTask = (tasks, filter) => {
   switch (filter) {
@@ -20,7 +22,12 @@ const filterTask = (tasks, filter) => {
       return tasks;
   }
 }
-function TaskList({ tasks }) {
+
+function TaskList() {
+  
+  const { TasksState, FilterState } = useContext(globalContext)
+  
+  const tasks = filterTask(TasksState, FilterState)
   return (
     <div className='container'>
       <FiltersTask />
@@ -28,21 +35,16 @@ function TaskList({ tasks }) {
         tasks.length > 0 ?
         tasks.map((task, i) => <Task 
           task={task}
-          key={i} 
+          key={i}
         />) : 
         <p style={{'textAlign':'center','padding':'2em 1em'}}>There's not tasks here...</p>
-      }
+      } 
 
     </div>
   )
 }
-const mapStateToProps = (state) => {
-  return {
-    tasks: filterTask(state.Tasks, state.Filter)
-  }
-}
 
-export default connect(mapStateToProps,null)(TaskList)
+export default TaskList;
 
 
 

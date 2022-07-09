@@ -1,10 +1,16 @@
 import '../../styles/Task.scss';
-import { connect } from 'react-redux/es/exports';
-import { actions } from '../../store/actions/actions';
 import iconDelete from '../../assets/img/icon-delete.png'
 import iconCheck from '../../assets/img/icon-check.png'
+import globalContext from '../../context/config';
+import { useContext } from 'react';
+import { actions } from '../../context/actions';
 
-function Task({ task, deleteTask, toggleTask }) {
+
+
+function Task({task }) {
+
+  const { TasksDispatch } = useContext(globalContext);
+
   return (
     <div className="task high">
       <div className='task-body'
@@ -15,7 +21,7 @@ function Task({ task, deleteTask, toggleTask }) {
       </div>
       <div className='task-buttons'>
         <div className="delete"
-          onClick={()=> deleteTask(task.id)}
+          onClick={()=> TasksDispatch(actions.deleteTask(task))}
         >
           <img 
             src={iconDelete}
@@ -23,7 +29,7 @@ function Task({ task, deleteTask, toggleTask }) {
           />
         </div>
         <div className="checked"
-          onClick={()=> toggleTask(task.id)}
+          onClick={()=> TasksDispatch(actions.toggleTask(task))}
         >
           <img 
             src={iconCheck}
@@ -35,15 +41,4 @@ function Task({ task, deleteTask, toggleTask }) {
   )
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    deleteTask: (id) => {
-      dispatch(actions.deleteTask(id))
-    },
-    toggleTask: (id) => {
-      dispatch(actions.toggleTask(id))
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(Task)
+export default Task;

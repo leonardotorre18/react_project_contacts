@@ -4,6 +4,13 @@ export const actionsTypes = {
   SET_FILTER: 'SET_FILTER',
   DELETE_TASK: 'DELETE_TASK'
 }
+export const filterTypes = {
+  SHOW_ALL:'SHOW_ALL',
+  SHOW_INCOMPLETED: 'SHOW_INCOMPLETED',
+  SHOW_COMPLETED: 'SHOW_COMPLETED'
+}
+
+
 
 let nextID = 0;
 export const actions = {
@@ -13,24 +20,25 @@ export const actions = {
       type: actionsTypes.ADD_TASK,
       payload: {
         ...task,
+        completed: false,
         id: nextID++
       }
     }
   },
-  deleteTask: (index) => {
+  deleteTask: (task) => {
     return {
       type: actionsTypes.DELETE_TASK,
       payload: {
-        id: index
+        id: task.id
       }
     }
   },
 
-  toggleTask: (index) => {
+  toggleTask: (task) => {
     return {
       type: actionsTypes.TOGGLE_TASK,
       payload: {
-        id: index
+        id: task.id
       }
     }
   },
